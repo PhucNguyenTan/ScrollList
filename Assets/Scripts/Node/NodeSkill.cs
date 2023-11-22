@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NodeSkill : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private TextMeshProUGUI TextSkillId;
+
+    private void Awake()
     {
-        
+        TextSkillId = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateSkill(int skillId)
     {
-        
+        TextSkillId.text = "Id" + skillId;
     }
 }

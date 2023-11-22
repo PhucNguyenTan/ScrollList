@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NodeLevel : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class NodeLevel : MonoBehaviour
         TextLevel = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void UpdateLevel()
+    public void UpdateLevel(int newLevel)
     {
-
+        TextLevel.text = "lv." + newLevel;
     }
 }

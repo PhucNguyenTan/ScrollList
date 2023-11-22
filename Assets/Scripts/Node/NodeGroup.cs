@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NodeGroup : MonoBehaviour
+public class NodeGroup : NodeViewBase<NodeGroupData>
 {
     [SerializeField]
     private NodeLevel level;
@@ -9,5 +9,11 @@ public class NodeGroup : MonoBehaviour
     [SerializeField]
     private NodeSkill skillSpecial;
 
-
+    public override void UpdateNodeView(NodeGroupData data)
+    {
+        level.UpdateLevel(data.Level);
+        skill.UpdateSkill(data.IdSkill);
+        skillSpecial.UpdateSkill(data.IdSkillSpecial);
+        level.gameObject.SetActive(data.ShowLevel);
+    }
 }
