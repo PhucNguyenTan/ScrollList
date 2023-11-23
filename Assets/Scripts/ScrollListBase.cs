@@ -7,15 +7,13 @@ using UnityEngine.UI;
 
 namespace Scrolllist
 {
-    public class ScrollListBase<D, V, S>: MonoBehaviour
+    public class ScrollListBase<D, V, S, G>: MonoBehaviour
         where D : NodeDataBase
         where V : NodeViewBase<D>
         where S : SlotBase<D, V>
+        where G : GroupBase<D, V, S>
     {
         protected ScrollRect scroll;
-
-        [SerializeField]
-        protected S slot;
 
         protected virtual void Awake()
         {
@@ -28,42 +26,11 @@ namespace Scrolllist
 
         }
 
-        public void UpdateList(List<D> datas)
+        public void UpdateList(List<G> groups)
         {
-            UpdateSlot(datas.Count);
-            var slots = scroll.content.GetComponentsInChildren<S>();
-            
-            for(var i = 0; i < datas.Count; i++)
+            foreach (var group in groups)
             {
-               slots[i].Set(i, datas[i]);
-            }
-        }
-
-        private void UpdateSlot(int slotCountNew)
-        {
-            var differenceCount = slotCountNew - scroll.content.childCount;
-
-            if (differenceCount == 0) return;
-            if (differenceCount > 0)
-                AddSlot(differenceCount);
-            else
-                RemoveSlot(-differenceCount);
-        }
-
-
-        private void AddSlot(int num)
-        {
-            for(var i = 0; i < num; i++)
-            {
-                Instantiate(slot, scroll.content);
-            }
-        }
-
-        private void RemoveSlot(int num)
-        {
-            for (int i = 1; i <= 10; i++)
-            {
-                Destroy(scroll.content.transform.GetChild(i).gameObject);
+                scroll.content. group.Slots;
             }
         }
     }
