@@ -1,9 +1,11 @@
 
 
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class NodeGroupData : NodeDataBase
 {
     private int idSkill = 0;
