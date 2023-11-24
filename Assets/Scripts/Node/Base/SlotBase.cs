@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,10 @@ public abstract class SlotBase<D, V> : MonoBehaviour
         view = GetComponentInChildren<V>();
     }
 
-    public void Set(int index, D data)
+    public void Set(int index, D data, Action<D> action)
     {
         this.index = index;
         view.UpdateNodeView(data);
+        view.SetOnClick(action);
     }
 }

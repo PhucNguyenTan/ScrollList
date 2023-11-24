@@ -1,19 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class NodeSkill : NodeViewBase<Skill>
 {
-    private TextMeshProUGUI TextSkillId;
+    private TextMeshProUGUI textSkillId = null;
 
     private void Awake()
     {
-        TextSkillId = GetComponentInChildren<TextMeshProUGUI>();
+        textSkillId = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public override void UpdateNodeView(Skill skill)
     {
-        TextSkillId.text = "Id" + skill.Id;
+        textSkillId.text = "Id" + skill.Id;
     }
 }

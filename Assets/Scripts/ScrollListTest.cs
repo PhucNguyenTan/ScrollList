@@ -4,17 +4,19 @@ using Assets.Scripts.Node;
 using Scrolllist;
 using UnityEngine.Events;
 
-public class ScrollListTest : ScrollListGroupBase<Skill, NodeSkill, SlotSkill, GroupSkillBoard>
+public sealed class ScrollListTest : ScrollListGroupBase<Skill, NodeSkill, SlotSkill, GroupSkillBoard>
 {
 
-    protected List<GroupSkillBoard> groups;
+    private List<GroupSkillBoard> groups;
+
+    private int chosenIndex;
 
     protected override void Awake()
     {
         base.Awake();
         var current = 0;
 
-        //Maybe find a way to create the Dictionary outside, instead of doing it here.
+        //????Maybe find a way to create the Dictionary outside, instead of doing it here.
         var testData = DataManager.Instance.TestSkills.OrderByDescending(x => x.Id);
         var testDict = testData
             .GroupBy(sk => sk.Level)
@@ -28,12 +30,11 @@ public class ScrollListTest : ScrollListGroupBase<Skill, NodeSkill, SlotSkill, G
     {
         foreach (var key in skills.Keys)
         {
-            //Check for a better way
+            //????Check for a better way
             var TestSkills = skills[key].OrderBy(x => x.Id).ToList();
 
             var group = Instantiate(groupPrefab, scroll.content);
             group.SetupGroup(TestSkills);
         }
     }
-
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Node
 {
-    public class SlotSkill : SlotBase<Skill, NodeSkill>
+    public sealed class SlotSkill : SlotBase<Skill, NodeSkill>
     {
         
     }

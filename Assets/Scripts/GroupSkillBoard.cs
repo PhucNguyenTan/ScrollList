@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Node;
@@ -16,14 +17,14 @@ public class GroupSkillBoard : GroupBase<Skill, NodeSkill, SlotSkill>
 
     }
 
-    public void SetupGroup(List<Skill> skills)
+    public void SetupGroup(List<Skill> skills, Action<Skill> action)
     {
         Level.text = "lv." + skills[0].Level;
 
         for(var i = 0; i < skills.Count;i++)
         {
             var slot = Instantiate(slotPrefab, content);
-            slot.Set(i, skills[i]);
+            slot.Set(i, skills[i], action);
         }
         //???? Is this needed
         LayoutRebuilder.ForceRebuildLayoutImmediate(content);
