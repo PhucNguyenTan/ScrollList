@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotBase<Data, View> : MonoBehaviour
-    where Data: NodeDataBase
-    where View: NodeViewBase<Data>
+public abstract class SlotBase<D, V> : MonoBehaviour
+    where D: NodeDataBase
+    where V: NodeViewBase<D>
 {
     private int index;
     private bool isVisible;
 
-    private View view;
+    private V view;
 
     private void Awake()
     {
-        view = GetComponentInChildren<View>();
+        view = GetComponentInChildren<V>();
     }
 
-    public void Set(int index, Data data)
+    public void Set(int index, D data)
     {
         this.index = index;
         view.UpdateNodeView(data);

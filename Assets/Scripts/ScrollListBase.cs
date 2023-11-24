@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 namespace Scrolllist
 {
-    public class ScrollListBase<D, V, S, G>: MonoBehaviour
+    public abstract class ScrollListGroupBase<D, V, S, G>: MonoBehaviour
         where D : NodeDataBase
         where V : NodeViewBase<D>
         where S : SlotBase<D, V>
         where G : GroupBase<D, V, S>
     {
         protected ScrollRect scroll;
+
+        [SerializeField]
+        protected G groupPrefab;
 
         protected virtual void Awake()
         {
@@ -26,13 +29,7 @@ namespace Scrolllist
 
         }
 
-        public void UpdateList(List<G> groups)
-        {
-            foreach (var group in groups)
-            {
-                scroll.content. group.Slots;
-            }
-        }
+        public abstract void UpdateListGroup(Dictionary<int, List<D>> data);
     }
 
 }
